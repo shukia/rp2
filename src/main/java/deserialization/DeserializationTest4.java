@@ -9,9 +9,8 @@ import java.io.ObjectInputStream;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@Controller
 public class DeserializationTest4 {
-    @PostMapping("/test")
+
     public void test(FileInputStream fileIS)
         throws IOException, ClassNotFoundException {
 
