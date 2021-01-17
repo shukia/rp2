@@ -2,32 +2,30 @@ package xxe;
 
 import java.io.StringReader;
 import javax.servlet.http.HttpServletRequest;
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.input.SAXBuilder;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 import org.xml.sax.InputSource;
 
-public class SAXBuilderTest2 {
-
+public class SAXReaderTest2 {
   public String getXml(HttpServletRequest request) {
     String xmlStr = request.getParameter("xmlStr");
     String result = unsafe(xmlStr);
     if(result != null) {
       return result;
     }
-    return "XML parse error";
+    return "XML error";
   }
 
   private String unsafe(String xmlString)
   {
     try {
-      Document document = new SAXBuilder().build(new InputSource(new StringReader(xmlString)));
+      Document document = new SAXReader().read(new InputSource(new StringReader(xmlString)));
       Element root = document.getRootElement();
       return root.getText();
     } catch (Exception e) {
       e.printStackTrace();
     }
-
     return null;
   }
 }
